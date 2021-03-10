@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <title>Machine Learning Dashboard View</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/template.css') }}">
+    
+</head>
+  <style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/static/pic1.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}
+</style>
+  <body style="background-color:PaleTurquoise;">
+
+  <div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s4">
+      <a href="#" class="w3-button w3-block w3-black">HOME</a>
+    </div>
+    <div class="w3-col s4">
+      <a name = "topic" href="/uploader" class="w3-button w3-block w3-black">Topic Modelling</a>
+    </div>
+    <div class="w3-col s4">
+      <a name = "sentiment" href="/sentiment" class="w3-button w3-block w3-black">Sentiment</a>
+    </div>
+    <div class="w3-col s4">
+      <a name = "nps" href="/analytics" class="w3-button w3-block w3-black">NPS</a>
+    </div>
+    <div class="w3-col s4">
+      <a name = "Timeseries" href="/timeseries" class="w3-button w3-block w3-black">Timeseries</a>
+    </div>
+  </div>
+</div>
+      {% if select_topic %}
+          <div class="container p-3 mb-2 bg-info text-white">
+          <h1>Topic Modelling Machine Learning Model</h1>
+
+
+            <div class="container">
+              <form class="form-inline" action="http://localhost:5000/uploader" method = "POST"
+              enctype = "multipart/form-data">
+                <div class="form-group">
+                  <label for="file">File:</label>
+                  <input type="file" class="form-control" id="file" name="file" required>
+                </div>
+                <div class="form-group">
+                  <label for="topic">Number of Topics:</label>
+                  <input type="text" class="form-control" id="topic" name="topic" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="export" name="export" class="btn btn-primary">Export</button>
+              </form>
+              </div>
+            <br>
+            <p>Number of optimum models:</p>
+            <br>
+              <div class="container">
+                <h4>Topics Tokens</h4>
+                <table class="table table-striped">
+                <div class="a">
+                  {% for table in tables %}
+                        {{titles[loop.index]}}
+                        {{ table|safe }}
+                        {% endfor %}
+                <div>
+                </table>
+              </div>
+
+
+      {% endif %}
+
+      {% if select_sentiment %}
+        <br>
+          <br>
+            <br>
+          <br>
+          <div>
+          <a href="http://localhost:5000/">Go Back</a>
+          </div>
+        <img src={{ url}} alt="Chart" height="75%" width="75%">
+      {% endif %}
+      {% if select_nps %}
+            <br>
+          <br>
+        <br>
+          <br>
+          <div>
+          <a href="http://localhost:5000/">Go Back</a>
+          </div>
+        <img src={{ url}} alt="Chart" height="75%" width="75%">
+      {% endif %}
+    </div>
+    </div>
+
+ </body>
+</html>
