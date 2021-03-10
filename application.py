@@ -1,9 +1,40 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
+import pandas as pd
+
+import base64
+
+import gensim
+from nltk.corpus import stopwords
+import matplotlib.pyplot as plt
+from collections import Counter
+
+stop = stopwords.words('english')
+import pyLDAvis
+import pyLDAvis.gensim
+from io import BytesIO
+
+import os, time
+from nltk.stem import WordNetLemmatizer, SnowballStemmer
+from nltk.stem.porter import *
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import nltk
+
+nltk.download('vader_lexicon')
+
+home = os.path.expanduser('~')
+UPLOAD_FOLDER = os.path.join(home, 'Downloads')
+ALLOWED_EXTENSIONS = {'xlsx', 'csv'}
+
+application = Flask(__name__)
+application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+stemmer = SnowballStemmer("english")
+
 application = Flask(__name__)
 
 @application.route('/')
 def upload():
     return render_template('index.html')
+
 
 '''
 import pandas as pd
