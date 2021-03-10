@@ -3,7 +3,7 @@ application = Flask(__name__)
 
 @application.route('/')
 def upload():
-    return "sample"
+    return render_template('index.html')
 
 '''
 import pandas as pd
