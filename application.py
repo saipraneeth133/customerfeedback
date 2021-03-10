@@ -72,6 +72,7 @@ def preprocess(text):
 def upload():
     return render_template('index.html')
 
+'''
 
 @application.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
@@ -191,7 +192,7 @@ def nps_cal():
             # plt.savefig('/static/images/new_plot_1.png')
             return render_template('index.html', name='NPS', url=result, select_nps=select_name)
     return render_template('pre_nps.html')
-
+'''
 
 if __name__ == '__main__':
     application.run()
