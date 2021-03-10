@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 import pandas as pd
-
+import tempfile
 import base64
-
+import nltk
+nltk.data.path.append(tempfile.gettempdir())
 import gensim
 from nltk.corpus import stopwords
 import matplotlib.pyplot as plt
@@ -17,9 +18,9 @@ import os, time
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
 from nltk.stem.porter import *
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import nltk
 
-nltk.download()
+
+nltk.download('vader_lexicon')
 
 home = os.path.expanduser('~')
 UPLOAD_FOLDER = os.path.join(home, 'Downloads')
