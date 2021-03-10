@@ -31,14 +31,6 @@ application = Flask(__name__)
 application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 stemmer = SnowballStemmer("english")
 
-application = Flask(__name__)
-
-@application.route('/')
-def upload():
-    return render_template('index.html')
-
-
-'''
 import pandas as pd
 
 import base64
@@ -229,5 +221,4 @@ def nps_cal():
             # plt.savefig('/static/images/new_plot_1.png')
             return render_template('index.html', name='NPS', url=result, select_nps=select_name)
     return render_template('pre_nps.html')
-'''
 
