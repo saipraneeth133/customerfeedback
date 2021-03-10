@@ -108,8 +108,6 @@ def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
         topics = request.form.get("topic")
-        return "test"
-        '''
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -148,7 +146,6 @@ def upload_file():
             pyLDAvis.save_html(vis, result)
             time.sleep(15)
             return render_template("result.html")
-            '''
     return render_template('ts.html')
 
 
