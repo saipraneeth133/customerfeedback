@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
+application = Flask(__name__)
 
+@application.route('/')
+def upload():
+    return "sample"
+
+'''
 import pandas as pd
 
 import base64
@@ -71,9 +77,7 @@ def preprocess(text):
 @application.route('/')
 def upload():
     return render_template('index.html')
-
-'''
-
+    
 @application.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -194,5 +198,3 @@ def nps_cal():
     return render_template('pre_nps.html')
 '''
 
-if __name__ == '__main__':
-    application.run()
