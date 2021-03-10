@@ -108,6 +108,8 @@ def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
         topics = request.form.get("topic")
+        return "test"
+        '''
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -134,8 +136,7 @@ def upload_file():
             top_words_per_topic = []
             for t in range(lda_model.num_topics):
                 top_words_per_topic.extend([(t,) + x for x in lda_model.show_topic(t, topn=30)])
-            return "test"
-            '''
+            
             #wor = pd.DataFrame(top_words_per_topic, columns=['Topic', 'Word', 'P'])
             #path = str(UPLOAD_FOLDER) + r"/topic.csv"
             #wor.to_csv(path)
