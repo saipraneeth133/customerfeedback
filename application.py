@@ -20,7 +20,7 @@ from nltk.stem.porter import *
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
 
-nltk.download('vader_lexicon')
+#nltk.download('vader_lexicon')
 
 home = os.path.expanduser('~')
 UPLOAD_FOLDER = os.path.join(home, 'Downloads')
