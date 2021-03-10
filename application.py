@@ -135,9 +135,9 @@ def upload_file():
             for t in range(lda_model.num_topics):
                 top_words_per_topic.extend([(t,) + x for x in lda_model.show_topic(t, topn=30)])
 
-            wor = pd.DataFrame(top_words_per_topic, columns=['Topic', 'Word', 'P'])
-            path = str(UPLOAD_FOLDER) + r"/topic.csv"
-            wor.to_csv(path)
+            #wor = pd.DataFrame(top_words_per_topic, columns=['Topic', 'Word', 'P'])
+            #path = str(UPLOAD_FOLDER) + r"/topic.csv"
+            #wor.to_csv(path)
             # pyLDAvis.enable_notebook()
             vis = pyLDAvis.gensim.prepare(lda_model, bow_corpus, dictionary)
             # pyLDAvis.show(vis)
