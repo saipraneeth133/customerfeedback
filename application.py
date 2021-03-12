@@ -173,7 +173,7 @@ def sentiment():
             print(scounter)
             figfile = BytesIO()
             plt.title("Reviews")
-            plt.bar(scounter.keys(), scounter.values())
+            plt.bar(scounter.keys(), scounter.values(), color=(0.2, 0.4, 0.6, 0.6))
             # plt.savefig('new_plot.png')
             # figfile.seek(0)
             plt.savefig(figfile, format='png')
@@ -207,13 +207,13 @@ def nps_cal():
             nps_scores = {}
             for i in cat_counter:
                 newdf = data[(data.categories == i)]
-                ratings = newdf["reviews.rating"]
+                ratings = newdf["rating"]
                 counter = Counter(ratings.values)
                 n = nps_score_calculation(counter)
                 nps_scores[i] = n
             {k: v for k, v in sorted(nps_scores.items(), key=lambda item: item[1])}
             figfile = BytesIO()
-            plt.plot(nps_scores.values())
+            plt.plot(nps_scores.values(), color=(0.2, 0.4, 0.6, 0.6))
             # plt.show()
             plt.savefig(figfile, format='png')
             figfile.seek(0)
