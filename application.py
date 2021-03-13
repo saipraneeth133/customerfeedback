@@ -121,6 +121,7 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             data = pd.read_csv(file)
+            '''
             data.iloc[:, 0] = data.iloc[:, 0].fillna("NO REVIEW")
             reviews_text = data.iloc[:, 0].values.tolist()
             reviews_text = [re.sub(r'[^A-Za-z\s]', '', text) for text in reviews_text]
@@ -148,6 +149,7 @@ def upload_file():
             pyLDAvis.save_html(vis, result)
             time.sleep(15)
             #return render_template("result.html")
+            '''
             return render_template('index.html', url="result.html", in_select_topic=select_name)
     return render_template('ts.html')
 
