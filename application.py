@@ -7,6 +7,7 @@ nltk.data.path.append(tempfile.gettempdir())
 import gensim
 from nltk.corpus import stopwords
 nltk.download("stopwords")
+nltk.download('wordnet')
 import matplotlib.pyplot as plt
 from collections import Counter
 
