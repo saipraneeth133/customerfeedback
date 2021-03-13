@@ -80,20 +80,10 @@ body, html {
                 <button type="export" name="export" class="btn btn-primary">Export</button>
               </form>
               </div>
-            <br>
-            <p>Number of optimum models:</p>
-            <br>
-              <div class="container">
-                <h4>Topics Tokens</h4>
-                <table class="table table-striped">
-                <div class="a">
-                  {% for table in tables %}
-                        {{titles[loop.index]}}
-                        {{ table|safe }}
-                        {% endfor %}
-                <div>
-                </table>
-              </div>
+            {% if in_select_topic %}
+            {% include url %}
+      	{% endif %}
+              
 
 
       {% endif %}

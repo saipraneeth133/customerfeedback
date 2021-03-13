@@ -107,6 +107,7 @@ def upload():
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
+        select_name = "in_topic"
         topics = request.form.get("topic")
         if 'file' not in request.files:
             flash('No file part')
@@ -145,7 +146,8 @@ def upload_file():
             # figfile = BytesIO()
             pyLDAvis.save_html(vis, result)
             time.sleep(15)
-            return render_template("result.html")
+            #return render_template("result.html")
+            return render_template('index.html', url="result.html", in_select_topic=select_name)
     return render_template('ts.html')
 
 
