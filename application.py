@@ -233,7 +233,7 @@ def nps_cal():
             figdata_png = base64.b64encode(figfile.getvalue()).decode()
             result = "data:image/png;base64," + figdata_png
             # plt.savefig('/static/images/new_plot_1.png')
-            send_file("npsresults.csv", as_attachment=True)
-            return render_template('index.html', name='NPS', url=result, select_nps=select_name)
+            return send_file("npsresults.csv", as_attachment=True)
+            #return render_template('index.html', name='NPS', url=result, select_nps=select_name)
     return render_template('pre_nps.html')
 
