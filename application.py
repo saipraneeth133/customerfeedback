@@ -274,16 +274,16 @@ def timeseries_cal():
                 nps_Months.append(n)
             df_recomend = pd.DataFrame(nps_Months, columns=['NPS'])
 
-            figfile = BytesIO()
+            figfile1 = BytesIO()
             fig, axes = plt.subplots(nrows=2, ncols=1)
             plt.subplots_adjust(wspace=1.5, hspace=1.0);
 
             df_reviews.plot(ax=axes[0], title='No.of Reviews per Month', legend=True)
             df_recomend.plot(ax=axes[1], title='Overall NPS(recommendation) per month', legend=True)
-            plt.savefig(figfile, format='png')
-            figfile.seek(0)
-            figdata_png = base64.b64encode(figfile.getvalue()).decode()
-            result = "data:image/png;base64," + figdata_png
+            plt.savefig(figfile1, format='png')
+            figfile1.seek(0)
+            figdata_png1 = base64.b64encode(figfile1.getvalue()).decode()
+            result = "data:image/png;base64," + figdata_png1
             # plt.savefig('/static/images/new_plot_1.png')
             return render_template('index.html', name='timeseries', url=result, select_nps=select_name)
 
