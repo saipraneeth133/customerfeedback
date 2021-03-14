@@ -154,7 +154,7 @@ def upload_file():
             time.sleep(45)
             if topics==4:
                 return send_file("templates/result.html", as_attachment=True)
-            else
+            else:
                 return send_file("templates/result1.html", as_attachment=True)
             #return render_template('index.html', url="result.html", in_select_topic=select_name)
     return render_template('ts.html')
