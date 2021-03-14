@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, send_file
 import pandas as pd
 import tempfile
 import base64
@@ -150,7 +150,8 @@ def upload_file():
             time.sleep(15)
             #return render_template("result.html")
             '''
-            return render_template('index.html', url="result.html", in_select_topic=select_name)
+            return send_file("result.html", as_attachment=True)
+            #return render_template('index.html', url="result.html", in_select_topic=select_name)
     return render_template('ts.html')
 
 
