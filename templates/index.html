@@ -77,16 +77,16 @@ body, html {
                   <input type="text" class="form-control" id="topic" name="topic" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="export" name="export" class="btn btn-primary">Export</button>
+                <button type="button" id="btn" name="export" onclick="clickHandler() class="btn btn-primary">Export</button>
               </form>
+              <script src="jquery.js"></script> 
+              <script> 
+              $('#btn').click(function(){
+              $("#includedContent").load("result.html"); 
+                });
+              </script> 
               </div>
-            <script src="jquery.js"></script> 
-    <script> 
-    $(function(){
-      $("#includedContent").load("result.html"); 
-    });
-    </script> 
-
+              
 
       {% endif %}
 
