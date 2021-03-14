@@ -255,7 +255,7 @@ def timeseries_cal():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            df = pd.read_excel(file, parse_dates=['reviews.date'])
+            df = pd.read_csv(file, parse_dates=['reviews.date'])
             df1 = df.dropna()
             df1 = df1.sort_values(by="reviews.date")
             df1['reviews.date'] = pd.to_datetime(df1['reviews.date'], dayfirst=True)
@@ -287,7 +287,7 @@ def timeseries_cal():
             # plt.savefig('/static/images/new_plot_1.png')
             return render_template('index.html', name='timeseries', url=result, select_nps=select_name)
 
-    return render_template('pre_nps.html')
+    return render_template('pre_timeseries.html')
 
 
 
