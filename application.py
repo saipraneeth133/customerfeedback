@@ -210,7 +210,7 @@ def nps_cal():
         if file and allowed_file(file.filename):
             data = pd.read_csv(file)
             data["rating"] = data["rating"].fillna(1)
-            ratings = data["reviews.rating"]
+            ratings = data["rating"]
             print(ratings.values)
             categories = data["categories"]
             cat_counter = Counter(categories.values)
