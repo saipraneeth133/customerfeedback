@@ -236,7 +236,58 @@ def nps_cal():
             figdata_png = base64.b64encode(figfile.getvalue()).decode()
             result = "data:image/png;base64," + figdata_png
             # plt.savefig('/static/images/new_plot_1.png')
-            send_file("npsresults.csv", as_attachment=True)
-            return render_template('index.html', name='NPS', url=result, select_nps=select_name)
+            return send_file("npsresults.csv", as_attachment=True)
+            #return render_template('index.html', name='NPS', url=result, select_nps=select_name)
     return render_template('pre_nps.html')
+
+@application.route('/timeseries', methods=['GET', 'POST'])
+def timeseries_cal():
+    select_name = "timeseries"
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            df = pd.read_excel(file, parse_dates=['reviews.date'])
+            df1 = df.dropna()
+            df1 = df1.sort_values(by="reviews.date")
+            df1['reviews.date'] = pd.to_datetime(df1['reviews.date'], dayfirst=True)
+            df1['year'] = df1['reviews.date'].dt.year
+            df1['month'] = df1['reviews.date'].dt.month
+            df1['day'] = df1['reviews.date'].dt.day
+
+            df1 = df1.set_index(['reviews.date'])
+            df2 = df1.resample('M').mean()
+            df3 = df1.dropna()
+            df_reviews = df3['rating'].groupby(df3.month).agg('count')
+            nps_Months = []
+            for i in range(1, 13):
+                rslt_df = df3[df3['month'] == i]
+                n = nps_score_calculation(rslt_df["rating"])
+                nps_Months.append(n)
+            df_recomend = pd.DataFrame(nps_Months, columns=['NPS'])
+
+            figfile = BytesIO()
+            fig, axes = plt.subplots(nrows=2, ncols=1)
+            plt.subplots_adjust(wspace=1.5, hspace=1.0);
+
+            df_reviews.plot(ax=axes[0], title='No.of Reviews per Month', legend=True)
+            df_recomend.plot(ax=axes[1], title='Overall NPS(recommendation) per month', legend=True)
+            plt.savefig(figfile, format='png')
+            figfile.seek(0)
+            figdata_png = base64.b64encode(figfile.getvalue()).decode()
+            result = "data:image/png;base64," + figdata_png
+            # plt.savefig('/static/images/new_plot_1.png')
+            return render_template('index.html', name='timeseries', url=result, select_nps=select_name)
+
+    return render_template('pre_nps.html')
+
+
 
