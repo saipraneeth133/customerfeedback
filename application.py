@@ -217,15 +217,18 @@ def nps_cal():
                 counter = Counter(ratings.values)
                 n = nps_score_calculation(counter)
                 nps_scores[i] = n
-            {k: v for k, v in sorted(nps_scores.items(), key=lambda item: item[1])}
+            npvalues={k: v for k, v in sorted(nps_scores.items(), key=lambda item: item[1])}
+            dd=pd.DataFrame.from_dict(npvalues)
+            dd.to_csv("data/npsvalues.csv", index = False, header=True)
             figfile = BytesIO()
-            plt.plot(nps_scores.values(), color=(0.2, 0.4, 0.6, 0.6))
+            plt.plot(nps_scores.values())
             # plt.show()
             plt.savefig(figfile, format='png')
             figfile.seek(0)
             figdata_png = base64.b64encode(figfile.getvalue()).decode()
             result = "data:image/png;base64," + figdata_png
             # plt.savefig('/static/images/new_plot_1.png')
+            send_file("data/npsvalues.csv", as_attachment=True)
             return render_template('index.html', name='NPS', url=result, select_nps=select_name)
     return render_template('pre_nps.html')
 
