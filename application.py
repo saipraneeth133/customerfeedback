@@ -209,6 +209,9 @@ def nps_cal():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             data = pd.read_csv(file)
+            data["rating"] = data["rating"].fillna(1)
+            ratings = data["reviews.rating"]
+            print(ratings.values)
             categories = data["categories"]
             cat_counter = Counter(categories.values)
             nps_scores = {}
@@ -220,7 +223,6 @@ def nps_cal():
                 nps_scores[i] = n
             npvalues={k: v for k, v in sorted(nps_scores.items(), key=lambda item: item[1])}
             data_list = {'x': npvalues}
-            print (data_list)
             with open(r'npsresults.csv', "w") as infile:
                 writer = csv.DictWriter(infile, fieldnames=data_list["x"].keys())
                 writer.writeheader()
@@ -234,7 +236,7 @@ def nps_cal():
             figdata_png = base64.b64encode(figfile.getvalue()).decode()
             result = "data:image/png;base64," + figdata_png
             # plt.savefig('/static/images/new_plot_1.png')
-            return send_file("npsresults.csv", as_attachment=True)
-            #return render_template('index.html', name='NPS', url=result, select_nps=select_name)
+            send_file("npsresults.csv", as_attachment=True)
+            return render_template('index.html', name='NPS', url=result, select_nps=select_name)
     return render_template('pre_nps.html')
 
