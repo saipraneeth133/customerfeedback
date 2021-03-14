@@ -220,6 +220,7 @@ def nps_cal():
                 nps_scores[i] = n
             npvalues={k: v for k, v in sorted(nps_scores.items(), key=lambda item: item[1])}
             data_list = {'x': npvalues}
+            print (data_list)
             with open(r'npsresults.csv', "w") as infile:
                 writer = csv.DictWriter(infile, fieldnames=data_list["x"].keys())
                 writer.writeheader()
