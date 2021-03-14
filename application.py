@@ -151,7 +151,11 @@ def upload_file():
             time.sleep(15)
             #return render_template("result.html")
             '''
-            return send_file("templates/result.html", as_attachment=True)
+            time.sleep(45)
+            if topics==4:
+                return send_file("templates/result.html", as_attachment=True)
+            else
+                return send_file("templates/result1.html", as_attachment=True)
             #return render_template('index.html', url="result.html", in_select_topic=select_name)
     return render_template('ts.html')
 
@@ -187,6 +191,7 @@ def sentiment():
             figfile.seek(0)
             figdata_png = base64.b64encode(figfile.getvalue()).decode()
             result = "data:image/png;base64,"+figdata_png
+            time.sleep(40)
             return render_template('index.html', name='Sentiment', url=result, select_sentiment=select_name)
             #return render_template('pre_nps.html')
     return render_template('pre_sentiment.html')
@@ -236,6 +241,7 @@ def nps_cal():
             figdata_png = base64.b64encode(figfile.getvalue()).decode()
             result = "data:image/png;base64," + figdata_png
             # plt.savefig('/static/images/new_plot_1.png')
+            time.sleep(40)
             return send_file("npsresults.csv", as_attachment=True)
             #return render_template('index.html', name='NPS', url=result, select_nps=select_name)
     return render_template('pre_nps.html')
@@ -285,6 +291,7 @@ def timeseries_cal():
             figdata_png1 = base64.b64encode(figfile1.getvalue()).decode()
             result = "data:image/png;base64," + figdata_png1
             # plt.savefig('/static/images/new_plot_1.png')
+            time.sleep(40)
             return render_template('index.html', name='timeseries', url=result, select_nps=select_name)
 
     return render_template('pre_timeseries.html')
