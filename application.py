@@ -150,7 +150,8 @@ def upload_file():
             time.sleep(15)
             #return render_template("result.html")
             '''
-            return send_file("result.html", as_attachment=True)
+            filename = os.path.join(application.instance_path, 'templates', 'result.html')
+            return send_file(filename, as_attachment=True)
             #return render_template('index.html', url="result.html", in_select_topic=select_name)
     return render_template('ts.html')
 
