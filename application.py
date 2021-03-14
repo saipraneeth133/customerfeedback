@@ -220,7 +220,7 @@ def nps_cal():
                 nps_scores[i] = n
             npvalues={k: v for k, v in sorted(nps_scores.items(), key=lambda item: item[1])}
             data_list = {'x': npvalues}
-            with open(r'data/npsresults.csv', "w") as infile:
+            with open(r'npsresults.csv', "w") as infile:
                 writer = csv.DictWriter(infile, fieldnames=data_list["x"].keys())
                 writer.writeheader()
                 writer.writerow(data_list["x"])
@@ -233,7 +233,7 @@ def nps_cal():
             figdata_png = base64.b64encode(figfile.getvalue()).decode()
             result = "data:image/png;base64," + figdata_png
             # plt.savefig('/static/images/new_plot_1.png')
-            send_file("data/npsresults.csv", as_attachment=True)
+            send_file("npsresults.csv", as_attachment=True)
             return render_template('index.html', name='NPS', url=result, select_nps=select_name)
     return render_template('pre_nps.html')
 
