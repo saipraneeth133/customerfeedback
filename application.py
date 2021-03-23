@@ -298,4 +298,3 @@ def timeseries_cal():
 
     return render_template('pre_timeseries.html')
 
-
