@@ -64,9 +64,8 @@ application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 stemmer = SnowballStemmer("english")
 
 
-for root, dirs, files in os.walk("."):
-    for filename in dirs:
-        print(filename)
+print ("*************")
+print (os.getcwd())
 
 
 def nps_score_calculation(ratinglist):
