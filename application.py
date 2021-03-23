@@ -29,7 +29,7 @@ home = os.path.expanduser('~')
 UPLOAD_FOLDER = os.path.join(home, 'Downloads')
 ALLOWED_EXTENSIONS = {'xlsx', 'csv'}
 
-application = Flask(__name__)
+application = Flask(__name__, static_url_path="/static")
 application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 stemmer = SnowballStemmer("english")
 
@@ -59,7 +59,7 @@ home = os.path.expanduser('~')
 UPLOAD_FOLDER = os.path.join(home, 'Downloads')
 ALLOWED_EXTENSIONS = {'xlsx', 'csv'}
 
-application = Flask(__name__, static_folder='static')
+# = Flask(__name__, static_folder='static')
 application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 stemmer = SnowballStemmer("english")
 
