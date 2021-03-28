@@ -193,6 +193,7 @@ def sentiment():
             figdata_png = base64.b64encode(figfile.getvalue()).decode()
             result = "data:image/png;base64,"+figdata_png
             time.sleep(10)
+            plt.close()
             return render_template('index.html', name='Sentiment', url=result, select_sentiment=select_name)
             #return render_template('pre_nps.html')
     return render_template('pre_sentiment.html')
@@ -293,6 +294,7 @@ def timeseries_cal():
             result = "data:image/png;base64," + figdata_png1
             # plt.savefig('/static/images/new_plot_1.png')
             time.sleep(10)
+            plt.close()
             return render_template('index.html', name='timeseries', url=result, select_nps=select_name)
 
     return render_template('pre_timeseries.html')
